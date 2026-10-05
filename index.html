@@ -64,6 +64,72 @@
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
+                            'Authorization': 'Bearer <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLMs and Fun Activities</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #282c34;
+            color: #ffffff;
+        }
+        .container {
+            text-align: center;
+            background-color: #383e43;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #e84c3c;
+        }
+        p {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        .activity {
+            margin: 20px auto;
+            width: 300px;
+            border: 2px solid #e84c3c;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .activity h2 {
+            color: #e84c3c;
+        }
+        .activity p {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>LLMs: The Future of Artificial Intelligence</h1>
+        <p>Large Language Models (LLMs) are advanced models that can understand and generate human-like text. They are being used in various applications such as natural language processing, language translation, chatbots, and more. In this website, we explore the fascinating world of LLMs and some fun activities to play around with them.</p>
+
+        <div class="activity">
+            <h2>LLM Playground</h2>
+            <p>Try generating some text using an LLM. Here's an example:</p>
+            <div id="llm-output"></div>
+            <button onclick="generateText()">Generate Text</button>
+
+            <script>
+                async function generateText() {
+                    const response = await fetch('https://api.openai.com/v1/completions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
                             'Authorization': 'Bearer YOUR_OPENAI_API_KEY'
                         },
                         body: JSON.stringify({
@@ -129,7 +195,89 @@
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Authorization': 'Bearer YOUR_OPENAI_API_KEY'
+                            'Authorization': 'Bearer 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'
+                        },
+                        body: JSON.stringify({
+                            model: 'text-davinci-003',
+                            prompt: `Generate a response to the following question: "${question}"`,
+                            max_tokens: 50
+                        })
+                    });
+
+                    const data = await response.json();
+                    document.getElementById('chatbot-output').innerText = data.choices[0].text.trim();
+                }
+            </script>
+        </div>
+    </div>
+</body>
+</html>
+'
+                        },
+                        body: JSON.stringify({
+                            model: 'text-davinci-003',
+                            prompt: 'Write a short story about a group of hackers who discover a secret government facility.',
+                            max_tokens: 100
+                        })
+                    });
+
+                    const data = await response.json();
+                    document.getElementById('llm-output').innerText = data.choices[0].text.trim();
+                }
+            </script>
+        </div>
+
+        <div class="activity">
+            <h2>LLM Translation</h2>
+            <p>Translate a sentence from one language to another using an LLM. Here's an example:</p>
+            <input type="text" id="input-text" placeholder="Enter a sentence">
+            <select id="language-select">
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+                <option value="fr">French</option>
+                <option value="de">German</option>
+            </select>
+            <button onclick="translateText()">Translate</button>
+
+            <div id="translated-text"></div>
+
+            <script>
+                async function translateText() {
+                    const inputText = document.getElementById('input-text').value;
+                    const language = document.getElementById('language-select').value;
+                    const response = await fetch(`https://translate.googleapis.com/language/translate/v2?key=YOUR_GOOGLE_API_KEY`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            q: inputText,
+                            target: language
+                        })
+                    });
+
+                    const data = await response.json();
+                    document.getElementById('translated-text').innerText = data.data.translations[0].translatedText;
+                }
+            </script>
+        </div>
+
+        <div class="activity">
+            <h2>LLM Chatbot</h2>
+            <p>Chat with an LLM to see how it responds to common questions. Here's an example:</p>
+            <input type="text" id="chatbot-input" placeholder="Type your question">
+            <button onclick="chatbotRespond()">Chat</button>
+
+            <div id="chatbot-output"></div>
+
+            <script>
+                async function chatbotRespond() {
+                    const question = document.getElementById('chatbot-input').value;
+                    const response = await fetch('https://api.openai.com/v1/completions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer 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'
                         },
                         body: JSON.stringify({
                             model: 'text-davinci-003',
